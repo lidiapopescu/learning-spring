@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.training.spring.Learningspring.data.Guest;
@@ -19,14 +18,27 @@ import com.training.spring.Learningspring.data.RoomRepository;
 
 @Service
 public class ReservationService {
-	
-	@Autowired
-    private RoomRepository roomRepository;
-	@Autowired
-    private GuestRepository guestRepository;
-	@Autowired
-    private ReservationRepository reservationRepository;
 
+    private final RoomRepository roomRepository;
+
+    private final GuestRepository guestRepository;
+
+    private final ReservationRepository reservationRepository;
+	
+//	 You can use one constructor without @Autowired
+//	 but if you have 2 or more, you have to specify @Autowired for constructor Spring has to pick, otherwise it will not compile
+//	 The compiler error returned by some IDs is "Class doesn't contain matching constructor for autowiring", 
+//	 The runtime Error: Error creating bean with name 'reservationService' , No default constructor found
+	public ReservationService(RoomRepository roomRepository,
+			GuestRepository guestRepository,
+			ReservationRepository reservationRepository) {
+		this.roomRepository = roomRepository;
+		this.guestRepository = guestRepository;
+		this.reservationRepository = reservationRepository;
+	}
+	
+
+	
     public List<RoomReservation> getRoomReservationsForDate(Date date) {
         Iterable<Room> rooms = this.roomRepository.findAll();
         Map<Long, RoomReservation> roomReservationMap = new HashMap();

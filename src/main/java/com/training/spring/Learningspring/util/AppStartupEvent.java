@@ -18,45 +18,27 @@ import com.training.spring.Learningspring.data.Room;
 import com.training.spring.Learningspring.data.RoomRepository;
 
 @Component
-public class AppStartupEvent implements ApplicationListener<ApplicationReadyEvent>{
+public class AppStartupEvent implements ApplicationListener<ApplicationReadyEvent> {
 
+	private final RoomRepository roomRepository;
 
-	private RoomRepository roomRepository;
+	private final GuestRepository questRepository; 
 
-	private GuestRepository questRepository; 
+	private final ReservationRepository reservationRepository;
 
-	private ReservationRepository reservationRepository;
+	private final ReservationService reservationService;
 
-	private ReservationService reservationService;
-
-	private DateUtils dateUtils;
+	private final DateUtils dateUtils;
 	
-	
-	@Autowired
-	public void setRoomRepository(RoomRepository roomRepository) {
+	public AppStartupEvent(RoomRepository roomRepository,
+			GuestRepository questRepository,
+			ReservationRepository reservationRepository,
+			ReservationService reservationService, DateUtils dateUtils) {
 		this.roomRepository = roomRepository;
-	}
-	@Autowired
-	public void setQuestRepository(GuestRepository questRepository) {
 		this.questRepository = questRepository;
-	}
-	@Autowired
-	public void setReservationRepository(ReservationRepository reservationRepository) {
 		this.reservationRepository = reservationRepository;
-	}
-	@Autowired
-	public void setReservationService(ReservationService reservationService) {
 		this.reservationService = reservationService;
-	}
-	@Autowired
-	public void setDateUtils(DateUtils dateUtils) {
 		this.dateUtils = dateUtils;
-	}
-
-	public AppStartupEvent(RoomRepository roomRepository, GuestRepository questRepository, ReservationRepository reservationRepository) {
-		this.roomRepository = roomRepository;
-		this.questRepository = questRepository;
-		this.reservationRepository = reservationRepository;
 	}
 	
 	@Override
