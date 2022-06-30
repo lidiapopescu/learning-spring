@@ -62,5 +62,4 @@ public class Room {
 		return "Room [id=" + id + ", name=" + name + ", roomNumber="
 				+ roomNumber + ", debInfo=" + debInfo + "]";
 	}
-	
 }
