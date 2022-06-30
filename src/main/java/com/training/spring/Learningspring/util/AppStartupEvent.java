@@ -20,18 +20,39 @@ import com.training.spring.Learningspring.data.RoomRepository;
 @Component
 public class AppStartupEvent implements ApplicationListener<ApplicationReadyEvent>{
 
-	@Autowired
-	private final RoomRepository roomRepository;
-	@Autowired
-	private final GuestRepository questRepository; 
-	@Autowired
-	private final ReservationRepository reservationRepository;
-	@Autowired
+
+	private RoomRepository roomRepository;
+
+	private GuestRepository questRepository; 
+
+	private ReservationRepository reservationRepository;
+
 	private ReservationService reservationService;
-	@Autowired
+
 	private DateUtils dateUtils;
 	
 	
+	@Autowired
+	public void setRoomRepository(RoomRepository roomRepository) {
+		this.roomRepository = roomRepository;
+	}
+	@Autowired
+	public void setQuestRepository(GuestRepository questRepository) {
+		this.questRepository = questRepository;
+	}
+	@Autowired
+	public void setReservationRepository(ReservationRepository reservationRepository) {
+		this.reservationRepository = reservationRepository;
+	}
+	@Autowired
+	public void setReservationService(ReservationService reservationService) {
+		this.reservationService = reservationService;
+	}
+	@Autowired
+	public void setDateUtils(DateUtils dateUtils) {
+		this.dateUtils = dateUtils;
+	}
+
 	public AppStartupEvent(RoomRepository roomRepository, GuestRepository questRepository, ReservationRepository reservationRepository) {
 		this.roomRepository = roomRepository;
 		this.questRepository = questRepository;
