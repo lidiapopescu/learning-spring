@@ -10,9 +10,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="GUEST")
 public class Guest {
-
+	// since we are adding we need to have some way to generate the ID, We use
+	// IDENTITY because it works with H2, If we would have an oracle db we would
+	// have to use a sequence.
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="GUEST_ID")
 	private long guestId;
 	
