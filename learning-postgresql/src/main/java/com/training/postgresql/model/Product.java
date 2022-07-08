@@ -14,13 +14,13 @@ public class Product {
 	
 	private String name;
 	
-	private String decsription;
+	private String description;
 
-	public Product(Long id, String name, String decsription) {
+	public Product(Long id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.decsription = decsription;
+		this.description = description;
 	}
 
 	public Long getId() {
@@ -39,11 +39,11 @@ public class Product {
 		this.name = name;
 	}
 
-	public String getDecsription() {
-		return decsription;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDecsription(String decsription) {
-		this.decsription = decsription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }
