@@ -12,19 +12,32 @@
  <br>
    
 
-     TrainingDB=# create table todotable(id int primary key, title varchar(64), summary varchar(64), description var char(64));
-        CREATE TABLE
-        TrainingDB=# \dt
-        List of relations
-        Schema | Name | Type | Owner
-        --------+-----------------------+-------+----------
-        public | todotable | table | postgres
+    TrainingDB=# create table todotable(id int primary key, title varchar(64), summary varchar(64), description var char(64));
+    CREATE TABLE
+    TrainingDB=# \dt
+    List of relations
+    Schema | Name | Type | Owner
+    --------+-----------------------+-------+----------
+    public | todotable | table | postgres
 
  <br>
 
     TrainingDB=# \q # for exit
     TrainingDB=# \? # Know all available psql commands
 
-  
 
-More available postgresql commands [here](https://www.geeksforgeeks.org/postgresql-psql-commands/) 
+More available postgresql commands [here](https://www.geeksforgeeks.org/postgresql-psql-commands/)
+
+  ## Maven execute
+
+ [Using Liquibase and your Maven POM File](https://docs.liquibase.com/tools-integrations/maven/using-liquibase-and-maven-pom-file.html)   
+
+    $ mvn help:describe -DgroupId=org.liquibase -DartifactId=liquibase-maven-plugin -Dversion=2.0.1 -Dfull=true
+
+  Run liquibase with maven
+
+    $ mvn liquibase:update
+
+## Gradle execute
+
+    % ./gradlew bootRun
