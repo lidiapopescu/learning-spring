@@ -13,9 +13,21 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>postgresql</name>
 	<description>Connect a PostgresSQL database with Spring Boot.</description>
+
 	<properties>
 		<java.version>1.8</java.version>
+		<!--  Same as in application.properties -->
+		<spring.datasource.driverClassName>org.postgresql.Driver</spring.datasource.driverClassName>
+		<!-- TODO how to do injection from application.properties -->
+		<spring.datasource.url>jdbc:postgresql://localhost:5433/TrainingDB</spring.datasource.url>
+		<spring.datasource.username>postgres</spring.datasource.username>
+        <spring.datasource.password>postgres</spring.datasource.password>
+        <spring.jpa.database-platform>org.hibernate.dialect.PostgreSQLDialect</spring.jpa.database-platform>
+        <spring.jpa.hibernate.ddl-auto>none</spring.jpa.hibernate.ddl-auto>
+        <spring.liquibase.enabled>true</spring.liquibase.enabled>
+        <spring.liquibase.change-log>/db/changelog/db.changelog-master.xml</spring.liquibase.change-log>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -65,8 +77,13 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<configuration>
 					<logging>debug</logging>
-					<propertyFile>/src/main/resources/liquibase.properties</propertyFile>
-					<changeLogFile>/src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>
+					<!-- VERSION 1 user local liquibase.properties with details about connection to DB -->
+					<!-- <propertyFile>/src/main/resources/liquibase.properties</propertyFile> -->
+					<!--  Works <changeLogFile>/src/main/resources/db/changelog/db.changelog-master.xml</changeLogFile>  -->
+					<url>${spring.datasource.url}</url>
+               		<username>${spring.datasource.username}</username>
+                	<password>${spring.datasource.password}</password>
+                	<changeLogFile>${spring.liquibase.change-log}</changeLogFile>
 				</configuration>
 			</plugin>
 		</plugins>

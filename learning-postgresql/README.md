@@ -41,3 +41,26 @@ More available postgresql commands [here](https://www.geeksforgeeks.org/postgres
 ## Gradle execute
 
     % ./gradlew bootRun
+
+
+
+
+
+---
+**Version 0.0.1**
+
+Liquibase properties class path, etc are defined in both places,
+- In maven pom file, starts with
+
+> /db/changelog/db.changelog-master.xml
+
+ and successfully works when build from maven
+
+    $ mvn liquibase:update
+
+- In application.properties
+
+> classpath:db/changelog/db.changelog-master.xml
+
+and successfully works when build from eclipse
+TODO: How to configure universal configuration applicable for both ? How to inject values from application.properties into pom.xml ?

@@ -3,9 +3,14 @@
    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd" >
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd" >
 
     <changeSet  author="lidia"  id="create-table-person">
+    <preConditions onFail="MARK_RAN">
+		<not>
+			<tableExists tableName="persons" />
+		</not>
+	</preConditions>
       <createTable tableName="persons">
          <column  name="id"  type="INTEGER">
             <constraints  nullable="false"  primaryKey="true"  unique="true"/>
